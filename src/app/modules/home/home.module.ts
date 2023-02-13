@@ -14,13 +14,20 @@ import {NgxMatTimepickerModule} from 'ngx-mat-timepicker';
 // Custom Components and modules
 import { HomeComponent } from './home.component';
 import { TopBannerComponent } from './components/top-banner/top-banner.component';
-
+import { FlashDealsComponents } from './components/flash-deals/flash-deals.component';
+import { PopularPlacesComponent } from './components/popular-places/popular-places.component';
+import { DateCountdown } from "../../shared/date-countdown/date-countdown";
 @NgModule({
     declarations: [
         HomeComponent,
-        TopBannerComponent
+        TopBannerComponent,
+        FlashDealsComponents,
+        PopularPlacesComponent,
+        DateCountdown
     ],
-    imports: [ 
+    exports: [],
+    providers: [],
+    imports: [
         CommonModule,
         FormsModule,
         ReactiveFormsModule,
@@ -31,9 +38,7 @@ import { TopBannerComponent } from './components/top-banner/top-banner.component
         MatNativeDateModule,
         NgxMatSelectSearchModule,
         NgxMatTimepickerModule,
-        RouterModule.forChild([{path: '', component: HomeComponent}])
-     ],
-    exports: [],
-    providers: [],
+        RouterModule.forChild([{ path: '', component: HomeComponent }])
+    ]
 })
 export class HomeModule {}

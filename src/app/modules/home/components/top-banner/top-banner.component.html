@@ -17,33 +17,69 @@
             </div>
             <div class="tab-content" id="nav-tabContent">
               <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
-                <div class="py-xl-3">
-                <mat-form-field class="w-100">
-                  <mat-select [formControl]="bankGroupsCtrl" placeholder="Search Your Destination(s)" #singleSelect>
-                    <mat-option>
-                      <ngx-mat-select-search [formControl]="bankGroupsFilterCtrl"></ngx-mat-select-search>
-                    </mat-option>
-                    <mat-optgroup *ngFor="let group of filteredBankGroups | async" [label]="group.name">
-                      <mat-option *ngFor="let bank of group.banks" [value]="bank">
-                        {{bank.name}}
+                <div class="col-12 d-grid mt-3">
+                  <mat-form-field class="w-100">
+                    <mat-select [formControl]="bankGroupsCtrl" placeholder="Search Your Destination(s)" #singleSelect>
+                      <mat-option>
+                        <ngx-mat-select-search [formControl]="bankGroupsFilterCtrl"></ngx-mat-select-search>
                       </mat-option>
-                    </mat-optgroup>
-                  </mat-select>
-                </mat-form-field>
+                      <mat-optgroup *ngFor="let group of filteredBankGroups | async" [label]="group.name">
+                        <mat-option *ngFor="let bank of group.banks" [value]="bank">
+                          {{bank.name}}
+                        </mat-option>
+                      </mat-optgroup>
+                    </mat-select>
+                  </mat-form-field>
+                </div>
 
-                <mat-form-field class="w-100" appearance="fill">
-                  <mat-label>Enter a date range</mat-label>
-                  <mat-date-range-input [rangePicker]="picker">
-                    <input matStartDate  placeholder="Start date">
-                    <input matEndDate placeholder="End date">
-                </mat-date-range-input>
+                <div class="col-12 d-grid mt-2">
+                  <mat-form-field class="w-100" appearance="fill">
+                    <mat-label>Enter a date range</mat-label>
+                    <mat-date-range-input [rangePicker]="picker">
+                      <input matStartDate placeholder="Start date">
+                      <input matEndDate placeholder="End date">
+                    </mat-date-range-input>
                     <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
                     <mat-date-range-picker #picker></mat-date-range-picker>
-                </mat-form-field>
+                  </mat-form-field>
+                </div>
+
+                <div class="col-12 d-grid mt-6">
+                  <button class="btn btn-secondary" type="submit">Search</button>
                 </div>
               </div>
             </div>
           </nav>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="py-0 overflow-hidden">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-lg-6 px-0"><img class="img-fluid order-md-0 mb-4 h-100 fit-cover" src="assets/img/top-banner.jpg"
+          alt="..." /></div>
+      <div class="col-lg-6 px-0 bg-primary-gradient bg-offcanvas-right">
+        <div class="mx-6 mx-xl-8 my-8">
+          <div class="align-items-center d-block d-flex mb-5"><img class="img-fluid me-3 me-md-2 me-lg-4"
+              src="assets/img/locations.png" alt="..." />
+            <div class="flex-1 align-items-center pt-2">
+              <h5 class="fw-bold text-light">Visit the greatest places</h5>
+            </div>
+          </div>
+          <div class="align-items-center d-block d-flex mb-5"><img class="img-fluid me-3 me-md-2 me-lg-4"
+              src="assets/img/schedule.png" alt="..." />
+            <div class="flex-1 align-items-center pt-2">
+              <h5 class="fw-bold text-light">Make your own plans.</h5>
+            </div>
+          </div>
+          <div class="align-items-center d-block d-flex mb-5"><img class="img-fluid me-3 me-md-2 me-lg-4"
+              src="assets/img/save.png" alt="..." />
+            <div class="flex-1 align-items-center pt-2">
+              <h5 class="fw-bold text-light">Save 15% on your next trip</h5>
+            </div>
+          </div>
         </div>
       </div>
     </div>
