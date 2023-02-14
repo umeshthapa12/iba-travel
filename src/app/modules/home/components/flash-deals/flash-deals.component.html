@@ -11,7 +11,7 @@
                 <div class="row h-100 align-items-center g-2">
                   <div class="col-md-4 mb-3 mb-md-0 h-100" *ngFor="let deal of flashDeals.slice(0,3)">
                     <div class="card card-span h-100 text-white">
-                      <img class="img-fluid h-100" src="assets/img/maldives.png" alt="..." />
+                      <img class="img-fluid h-100" [src]="deal.thumbnail" alt="..." />
                       <div class="card-img-overlay ps-0">
                         <span class="badge bg-primary ms-3 me-1 p-2">
                           <i class="fas fa-clock me-1"></i>
@@ -51,20 +51,47 @@
                   </div>
                 </div>
               </div>
-              <!-- <div class="carousel-item" data-bs-interval="5000">
+              <div class="carousel-item" *ngIf="flashDeals.length > 3" data-bs-interval="5000">
                 <div class="row h-100 align-items-center g-2">
-                  <div class="col-md-4 mb-3 mb-md-0 h-100">
-                    <div class="card card-span h-100 text-white"><img class="img-fluid h-100" src="assets/img/maldives.png" alt="..." />
-                      <div class="card-img-overlay ps-0"><span class="badge bg-primary ms-3 me-1 p-2"><i class="fas fa-clock me-1"></i><span>20:04:32:21</span></span><span class="badge bg-secondary p-2"><i class="fas fa-bolt me-1"></i><span>trending</span><i class="fas fa-bolt ms-1"> </i></span></div>
+                  <div class="col-md-4 mb-3 mb-md-0 h-100" *ngFor="let deal of flashDeals.slice(3,6)">
+                    <div class="card card-span h-100 text-white">
+                      <img class="img-fluid h-100" [src]="deal.thumbnail" alt="..." />
+                      <div class="card-img-overlay ps-0">
+                        <span class="badge bg-primary ms-3 me-1 p-2">
+                          <i class="fas fa-clock me-1"></i>
+                          <span>
+                            <date-countdown [endDate]="deal.startDate"></date-countdown>
+                          </span>
+                        </span>
+                        <span class="badge bg-secondary p-2">
+                          <i class="fas fa-bolt me-1"></i>
+                          <span>{{deal.status}}</span>
+                          <i class="fas fa-bolt ms-1"> </i>
+                        </span>
+                      </div>
                       <div class="card-body ps-0">
-                        <h5 class="fw-bold text-1000 mb-4 text-truncate">Mermaid Beach Resort: The most joyful way to spend your holiday</h5>
-                        <div class="d-flex align-items-center justify-content-start"><span class="text-800 fs--1 me-2"><i class="fas fa-map-marker-alt"></i></span><span class="text-900 me-3">Maldives</span><span class="text-800 fs--1 me-2"><i class="fas fa-calendar"></i></span><span class="text-900">4 days</span></div>
-                        <p class="text-decoration-line-through text-900 mt-3 mb-0">$200</p>
-                        <h1 class="mb-3 text-primary fw-bolder fs-4"><span>$175</span><span class="text-900 fs--1 fw-normal">/Per person</span></h1><span class="badge bg-soft-secondary p-2"><i class="fas fa-tag text-secondary fs--1 me-1"></i><span class="text-secondary fw-normal fs-1">-15%</span></span>
+                        <h5 class="fw-bold text-1000 mb-4 text-truncate">{{deal.tripName}}</h5>
+                        <div class="d-flex align-items-center justify-content-start">
+                          <span class="text-800 fs--1 me-2">
+                            <i class="fas fa-map-marker-alt"></i>
+                          </span>
+                          <span class="text-900 me-3">{{deal.location}}</span>
+                          <span class="text-800 fs--1 me-2">
+                            <i class="fas fa-calendar"></i>
+                          </span>
+                            <span class="text-900">{{deal.duration}}</span>
+                          </div>
+                        <p class="text-decoration-line-through text-900 mt-3 mb-0">Rs.{{deal.actualPrice}}</p>
+                        <h1 class="mb-3 text-primary fw-bolder fs-4"><span>Rs.{{discountCalculator(deal.actualPrice, deal.discount)}}</span>
+                          <span class="text-900 fs--1 fw-normal">/Per person</span></h1>
+                          <span class="badge bg-soft-secondary p-2">
+                            <i class="fas fa-tag text-secondary fs--1 me-1"></i>
+                            <span class="text-secondary fw-normal fs-1">-{{deal.discount}}%</span>
+                          </span>
                       </div>
                     </div>
                   </div>
-                  <div class="col-md-4 mb-3 mb-md-0 h-100">
+                  <!-- <div class="col-md-4 mb-3 mb-md-0 h-100">
                     <div class="card card-span h-100 text-white"><img class="img-fluid h-100" src="assets/img/cinnamon.png" alt="..." />
                       <div class="card-img-overlay ps-0"><span class="badge bg-primary ms-3 me-1 p-2"><i class="fas fa-clock me-1"></i><span>20:04:32:21</span></span><span class="badge bg-secondary p-2"><i class="fas fa-bolt me-1"></i><span>trending</span><i class="fas fa-bolt ms-1"> </i></span></div>
                       <div class="card-body ps-0">
@@ -83,94 +110,90 @@
                         <div class="d-flex align-items-center justify-content-start"><span class="text-800 fs--1 me-2"><i class="fas fa-map-marker-alt"></i></span><span class="text-900 me-3">Maldives</span><span class="text-800 fs--1 me-2"><i class="fas fa-calendar"></i></span><span class="text-900">4 days</span></div>
                         <p class="text-decoration-line-through text-900 mt-3 mb-0">$375</p>
                         <h1 class="mb-3 text-primary fw-bolder fs-4"><span>$300</span><span class="text-900 fs--1 fw-normal">/Per person</span></h1><span class="badge bg-soft-secondary p-2"><i class="fas fa-tag text-secondary fs--1 me-1"></i><span class="text-secondary fw-normal fs-1">-15%</span></span>
+                      </div>
+                    </div>
+                  </div> -->
+                </div>
+              </div>
+              <div class="carousel-item" *ngIf="flashDeals.length > 6" data-bs-interval="3000">
+                <div class="row h-100 align-items-center g-2">
+                  <div class="col-md-4 mb-3 mb-md-0 h-100" *ngFor="let deals of flashDeals.slice(3,6)">
+                    <div class="card card-span h-100 text-white">
+                      <img class="img-fluid h-100" [src]="deals.thumbnail" alt="..." />
+                      <div class="card-img-overlay ps-0">
+                        <span class="badge bg-primary ms-3 me-1 p-2">
+                          <i class="fas fa-clock me-1"></i>
+                          <span>
+                            <date-countdown [endDate]="deals.startDate"></date-countdown>
+                          </span>
+                        </span>
+                        <span class="badge bg-secondary p-2">
+                          <i class="fas fa-bolt me-1"></i>
+                          <span>{{deals.status}}</span>
+                          <i class="fas fa-bolt ms-1"> </i>
+                        </span>
+                      </div>
+                      <div class="card-body ps-0">
+                        <h5 class="fw-bold text-1000 mb-4 text-truncate">{{deals.tripName}}</h5>
+                        <div class="d-flex align-items-center justify-content-start">
+                          <span class="text-800 fs--1 me-2">
+                            <i class="fas fa-map-marker-alt"></i>
+                          </span>
+                          <span class="text-900 me-3">{{deals.location}}</span>
+                          <span class="text-800 fs--1 me-2">
+                            <i class="fas fa-calendar"></i>
+                          </span>
+                          <span class="text-900">{{deals.duration}}</span>
+                        </div>
+                        <p class="text-decoration-line-through text-900 mt-3 mb-0">Rs.{{deals.actualPrice}}</p>
+                        <h1 class="mb-3 text-primary fw-bolder fs-4"><span>Rs.{{discountCalculator(deals.actualPrice, deals.discount)}}</span>
+                          <span class="text-900 fs--1 fw-normal">/Per person</span></h1>
+                          <span class="badge bg-soft-secondary p-2">
+                            <i class="fas fa-tag text-secondary fs--1 me-1"></i>
+                            <span class="text-secondary fw-normal fs-1">-{{deals.discount}}%</span>
+                          </span>
                       </div>
                     </div>
                   </div>
                 </div>
               </div>
-              <div class="carousel-item" data-bs-interval="3000">
+              <div class="carousel-item" *ngIf="flashDeals.length > 9">
                 <div class="row h-100 align-items-center g-2">
-                  <div class="col-md-4 mb-3 mb-md-0 h-100">
-                    <div class="card card-span h-100 text-white"><img class="img-fluid h-100" src="assets/img/maldives.png" alt="..." />
-                      <div class="card-img-overlay ps-0"><span class="badge bg-primary ms-3 me-1 p-2"><i class="fas fa-clock me-1"></i><span>20:04:32:21</span></span><span class="badge bg-secondary p-2"><i class="fas fa-bolt me-1"></i><span>trending</span><i class="fas fa-bolt ms-1"> </i></span></div>
-                      <div class="card-body ps-0">
-                        <h5 class="fw-bold text-1000 mb-4 text-truncate">Mermaid Beach Resort: The most joyful way to spend your holiday</h5>
-                        <div class="d-flex align-items-center justify-content-start"><span class="text-800 fs--1 me-2"><i class="fas fa-map-marker-alt"></i></span><span class="text-900 me-3">Maldives</span><span class="text-800 fs--1 me-2"><i class="fas fa-calendar"></i></span><span class="text-900">4 days</span></div>
-                        <p class="text-decoration-line-through text-900 mt-3 mb-0">$200</p>
-                        <h1 class="mb-3 text-primary fw-bolder fs-4"><span>$175</span><span class="text-900 fs--1 fw-normal">/Per person</span></h1><span class="badge bg-soft-secondary p-2"><i class="fas fa-tag text-secondary fs--1 me-1"></i><span class="text-secondary fw-normal fs-1">-15%</span></span>
+                  <div class="col-md-4 mb-3 mb-md-0 h-100" *ngFor="let deals of flashDeals.slice(6,9)">
+                    <div class="card card-span h-100 text-white">
+                      <img class="img-fluid h-100" [src]="deals.thumbnail" alt="..." />
+                      <div class="card-img-overlay ps-0">
+                        <span class="badge bg-primary ms-3 me-1 p-2">
+                          <i class="fas fa-clock me-1"></i>
+                          <span>
+                            <date-countdown [endDate]="deals.startDate"></date-countdown>
+                          </span>
+                        </span>
+                        <span class="badge bg-secondary p-2">
+                          <i class="fas fa-bolt me-1"></i>
+                          <span>{{deals.status}}</span>
+                          <i class="fas fa-bolt ms-1"> </i>
+                        </span>
                       </div>
-                    </div>
-                  </div>
-                  <div class="col-md-4 mb-3 mb-md-0 h-100">
-                    <div class="card card-span h-100 text-white"><img class="img-fluid h-100" src="assets/img/cinnamon.png" alt="..." />
-                      <div class="card-img-overlay ps-0"><span class="badge bg-primary ms-3 me-1 p-2"><i class="fas fa-clock me-1"></i><span>20:04:32:21</span></span><span class="badge bg-secondary p-2"><i class="fas fa-bolt me-1"></i><span>trending</span><i class="fas fa-bolt ms-1"> </i></span></div>
                       <div class="card-body ps-0">
-                        <h5 class="fw-bold text-1000 mb-4 text-truncate">Bora Bora: Enjoy a romantic cruise tour of at the sunny side of life</h5>
-                        <div class="d-flex align-items-center justify-content-start"><span class="text-800 fs--1 me-2"><i class="fas fa-map-marker-alt"></i></span><span class="text-900 me-3">Maldives</span><span class="text-800 fs--1 me-2"><i class="fas fa-calendar"></i></span><span class="text-900">4 days</span></div>
-                        <p class="text-decoration-line-through text-900 mt-3 mb-0">$300</p>
-                        <h1 class="mb-3 text-primary fw-bolder fs-4"><span>$250</span><span class="text-900 fs--1 fw-normal">/Per person</span></h1><span class="badge bg-soft-secondary p-2"><i class="fas fa-tag text-secondary fs--1 me-1"></i><span class="text-secondary fw-normal fs-1">-15%</span></span>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="col-md-4 mb-3 mb-md-0 h-100">
-                    <div class="card card-span h-100 text-white"><img class="img-fluid h-100" src="assets/img/dhigu.png" alt="..." />
-                      <div class="card-img-overlay ps-0"><span class="badge bg-primary ms-3 me-1 p-2"><i class="fas fa-clock me-1"></i><span>20:04:32:21</span></span><span class="badge bg-secondary p-2"><i class="fas fa-bolt me-1"></i><span>trending</span><i class="fas fa-bolt ms-1"> </i></span></div>
-                      <div class="card-body ps-0">
-                        <h5 class="fw-bold text-1000 mb-4 text-truncate">Fihalhohi Island Resort: Luxury destination without compromise</h5>
-                        <div class="d-flex align-items-center justify-content-start"><span class="text-800 fs--1 me-2"><i class="fas fa-map-marker-alt"></i></span><span class="text-900 me-3">Maldives</span><span class="text-800 fs--1 me-2"><i class="fas fa-calendar"></i></span><span class="text-900">4 days</span></div>
-                        <p class="text-decoration-line-through text-900 mt-3 mb-0">$375</p>
-                        <h1 class="mb-3 text-primary fw-bolder fs-4"><span>$300</span><span class="text-900 fs--1 fw-normal">/Per person</span></h1><span class="badge bg-soft-secondary p-2"><i class="fas fa-tag text-secondary fs--1 me-1"></i><span class="text-secondary fw-normal fs-1">-15%</span></span>
+                        <h5 class="fw-bold text-1000 mb-4 text-truncate">{{deals.tripName}}</h5>
+                        <div class="d-flex align-items-center justify-content-start"><span class="text-800 fs--1 me-2"><i class="fas fa-map-marker-alt"></i></span><span class="text-900 me-3">{{deals.location}}</span><span class="text-800 fs--1 me-2"><i class="fas fa-calendar"></i></span><span class="text-900">{{deals.duration}}</span></div>
+                        <p class="text-decoration-line-through text-900 mt-3 mb-0">Rs.{{deals.actualPrice}}</p>
+                        <h1 class="mb-3 text-primary fw-bolder fs-4"><span>Rs.{{discountCalculator(deals.actualPrice, deals.discount)}}</span><span class="text-900 fs--1 fw-normal">/Per person</span></h1><span class="badge bg-soft-secondary p-2"><i class="fas fa-tag text-secondary fs--1 me-1"></i><span class="text-secondary fw-normal fs-1">-{{deals.discount}}%</span></span>
                       </div>
                     </div>
                   </div>
                 </div>
               </div>
-              <div class="carousel-item">
-                <div class="row h-100 align-items-center g-2">
-                  <div class="col-md-4 mb-3 mb-md-0 h-100">
-                    <div class="card card-span h-100 text-white"><img class="img-fluid h-100" src="assets/img/maldives.png" alt="..." />
-                      <div class="card-img-overlay ps-0"><span class="badge bg-primary ms-3 me-1 p-2"><i class="fas fa-clock me-1"></i><span>20:04:32:21</span></span><span class="badge bg-secondary p-2"><i class="fas fa-bolt me-1"></i><span>trending</span><i class="fas fa-bolt ms-1"> </i></span></div>
-                      <div class="card-body ps-0">
-                        <h5 class="fw-bold text-1000 mb-4 text-truncate">Mermaid Beach Resort: The most joyful way to spend your holiday</h5>
-                        <div class="d-flex align-items-center justify-content-start"><span class="text-800 fs--1 me-2"><i class="fas fa-map-marker-alt"></i></span><span class="text-900 me-3">Maldives</span><span class="text-800 fs--1 me-2"><i class="fas fa-calendar"></i></span><span class="text-900">4 days</span></div>
-                        <p class="text-decoration-line-through text-900 mt-3 mb-0">$200</p>
-                        <h1 class="mb-3 text-primary fw-bolder fs-4"><span>$175</span><span class="text-900 fs--1 fw-normal">/Per person</span></h1><span class="badge bg-soft-secondary p-2"><i class="fas fa-tag text-secondary fs--1 me-1"></i><span class="text-secondary fw-normal fs-1">-15%</span></span>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="col-md-4 mb-3 mb-md-0 h-100">
-                    <div class="card card-span h-100 text-white"><img class="img-fluid h-100" src="assets/img/cinnamon.png" alt="..." />
-                      <div class="card-img-overlay ps-0"><span class="badge bg-primary ms-3 me-1 p-2"><i class="fas fa-clock me-1"></i><span>20:04:32:21</span></span><span class="badge bg-secondary p-2"><i class="fas fa-bolt me-1"></i><span>trending</span><i class="fas fa-bolt ms-1"> </i></span></div>
-                      <div class="card-body ps-0">
-                        <h5 class="fw-bold text-1000 mb-4 text-truncate">Bora Bora: Enjoy a romantic cruise tour of at the sunny side of life</h5>
-                        <div class="d-flex align-items-center justify-content-start"><span class="text-800 fs--1 me-2"><i class="fas fa-map-marker-alt"></i></span><span class="text-900 me-3">Maldives</span><span class="text-800 fs--1 me-2"><i class="fas fa-calendar"></i></span><span class="text-900">4 days</span></div>
-                        <p class="text-decoration-line-through text-900 mt-3 mb-0">$300</p>
-                        <h1 class="mb-3 text-primary fw-bolder fs-4"><span>$250</span><span class="text-900 fs--1 fw-normal">/Per person</span></h1><span class="badge bg-soft-secondary p-2"><i class="fas fa-tag text-secondary fs--1 me-1"></i><span class="text-secondary fw-normal fs-1">-15%</span></span>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="col-md-4 mb-3 mb-md-0 h-100">
-                    <div class="card card-span h-100 text-white"><img class="img-fluid h-100" src="assets/img/dhigu.png" alt="..." />
-                      <div class="card-img-overlay ps-0"><span class="badge bg-primary ms-3 me-1 p-2"><i class="fas fa-clock me-1"></i><span>20:04:32:21</span></span><span class="badge bg-secondary p-2"><i class="fas fa-bolt me-1"></i><span>trending</span><i class="fas fa-bolt ms-1"> </i></span></div>
-                      <div class="card-body ps-0">
-                        <h5 class="fw-bold text-1000 mb-4 text-truncate">Fihalhohi Island Resort: Luxury destination without compromise</h5>
-                        <div class="d-flex align-items-center justify-content-start"><span class="text-800 fs--1 me-2"><i class="fas fa-map-marker-alt"></i></span><span class="text-900 me-3">Maldives</span><span class="text-800 fs--1 me-2"><i class="fas fa-calendar"></i></span><span class="text-900">4 days</span></div>
-                        <p class="text-decoration-line-through text-900 mt-3 mb-0">$375</p>
-                        <h1 class="mb-3 text-primary fw-bolder fs-4"><span>$300</span><span class="text-900 fs--1 fw-normal">/Per person</span></h1><span class="badge bg-soft-secondary p-2"><i class="fas fa-tag text-secondary fs--1 me-1"></i><span class="text-secondary fw-normal fs-1">-15%</span></span>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div> -->
               <div class="row"><button class="carousel-control-prev" type="button" data-bs-target="#carouselTestimonials" data-bs-slide="prev"><span class="carousel-control-prev-icon" aria-hidden="true"></span><span class="visually-hidden">Previous</span></button><button class="carousel-control-next" type="button" data-bs-target="#carouselTestimonials" data-bs-slide="next"><span class="carousel-control-next-icon" aria-hidden="true"></span><span class="visually-hidden">Next                                    </span></button></div>
             </div>
             <div class="row flex-center">
               <div class="col-auto position-relative z-index-2">
                 <ol class="carousel-indicators me-xxl-7 me-xl-4 me-lg-7">
-                  <li class="active" data-bs-target="#carouselTestimonials" data-bs-slide-to="0"></li>
-                  <li data-bs-target="#carouselTestimonials" data-bs-slide-to="1"></li>
-                  <li data-bs-target="#carouselTestimonials" data-bs-slide-to="2"></li>
-                  <li data-bs-target="#carouselTestimonials" data-bs-slide-to="3"></li>
+                  <li *ngIf="flashDeals.length > 0" class="active" data-bs-target="#carouselTestimonials" data-bs-slide-to="0"></li>
+                  <li *ngIf="flashDeals.length > 3" data-bs-target="#carouselTestimonials" data-bs-slide-to="1"></li>
+                  <li *ngIf="flashDeals.length > 6" data-bs-target="#carouselTestimonials" data-bs-slide-to="2"></li>
+                  <li *ngIf="flashDeals.length > 9" data-bs-target="#carouselTestimonials" data-bs-slide-to="3"></li>
                 </ol>
               </div>
             </div>
